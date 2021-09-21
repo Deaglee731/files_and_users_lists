@@ -29,7 +29,7 @@ Decode();
 </head>
 
 <body>
-<form action="create_files.php" method="POST">
+<form action="/files/create" method="POST">
   <table class="table table-striped text-center table-hover">
     <thead class="thead-dark center element_table">
       <tr>
@@ -60,8 +60,8 @@ Decode();
           <td><?php echo $docs['Requisites'] ?></td>
 
           <th scope="col">
-            <a href="update_files.php?id=<?php echo $docs['id'] ?>">EDIT</a>
-            <a href="delete_files.php?id=<?php echo $docs['id'] ?>">DELETE</a>
+            <a href="/files/update?id=<?php echo $docs['id'] ?>">EDIT</a>
+            <a href="/files/update?id=<?php echo $docs['id'] ?>">DELETE</a>
           </th>
           <th scope="col">
           </th>

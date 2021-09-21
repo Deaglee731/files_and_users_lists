@@ -15,6 +15,7 @@ function Decode()
     $massive_id[$id] = $files;
   }
 
+
   return $result_mass;
 }
 
@@ -35,7 +36,6 @@ Decode();
   <table class="table table-striped text-center table-hover">
     <thead class="thead-dark center element_table">
       <tr>
-        <th scope="col">ID</th>
 
         <th scope="col">FirstName</th>
         <th scope="col">LastName</th>
@@ -45,17 +45,16 @@ Decode();
       </tr>
     </thead>
     <tbody>
+    <?php foreach ($result_mass as $users) : ?>
       <tr>
-
-
-        <?php foreach ($result_mass as $users) : ?>
+        
           <td><?php echo $users['login'] ?></td>
           <td><?php echo $users['firstname'] ?></td>
           <td><?php echo $users['lastname'] ?></td>
           <td><?php echo $users['birthday'] ?></td>
           <th scope="col">
-            <a href="update_users.php?id=<?php echo $users['id'] ?>">EDIT</a>
-            <a href="delete_users.php?id=<?php echo $users['id'] ?>">DELETE</a>
+            <a href="/users/update?id=<?php echo $users['id'] ?>">EDIT</a>
+            <a href="/users/delete?id=<?php echo $users['id'] ?>">DELETE</a>
           </th>
           <th scope="col">
             <div class="btn-group-toggle" data-toggle="buttons">
@@ -64,16 +63,16 @@ Decode();
               </label>
             </div>
           </th>
-          </th>
           </form>
+          
       </tr>
-    <?php endforeach; ?>
+      <?php endforeach; ?>
   </table>
 
   </tbody>
 
 
-  <form action="create_users.php" method="POST">
+  <form action="/users/create" method="POST">
     <button type="submit" class="btn btn-warning">Create</button>
 
 

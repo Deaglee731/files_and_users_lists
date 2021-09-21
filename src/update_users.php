@@ -26,18 +26,12 @@ function CheckDate1()
         $i += 1;
     }
     if ($i == 0) {
-        header("Location:index_users.php");
+        header("Location:/users/");
         $result = json_encode($_POST);
-        $current = file_get_contents("date_users/users/numberic");
-        file_put_contents("date_users/users/{$current}", $result);
+        file_put_contents("date_users/users/{$_GET['id']}", $result);
     }
     return $Errors;
 }
-
-
-
-
-
 
 
 
@@ -55,10 +49,7 @@ if (isset($_GET['id'])) {
 
     if (isset($_POST['btn_editor'])) {
         $Errors = CheckDate1();
-
-
-
-        header("Location:index_users.php");
+        header("Location:/users/");
     }
 }
 ?>

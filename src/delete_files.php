@@ -8,7 +8,7 @@ if (isset($_GET['id'])){
    }
    else{
        unlink("date_files/documents/$current_file");
-       header('Location: index_files.php');
+       header('Location: /users/');
    }
 
 }

@@ -28,7 +28,7 @@ function CheckDate1()
         $i += 1;
     }
     if ($i == 0) {
-        header("Location:index_users.php");
+        header("Location:/users/");
         $result = json_encode($_POST);
         $current = file_get_contents("date_users/users/numberic");
         $next = $current + 1;

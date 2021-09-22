@@ -2,6 +2,8 @@
 
 require_once "engine.php";
 require_once "Singleton.php";
+require_once "User_Controller.php";
+require_once "File_Controller.php";
 $address = ($_SERVER['REQUEST_URI']);
 
 
@@ -9,27 +11,60 @@ class Router extends Singleton
 {
     function run()
     {
-        
 
         $address2 = $this->getPath();
         $address3 = $this->name123($address2);
-        $route = [
-            '/users/create' => 'create_users.php',
-            '/files/create' => 'create_files.php',
-            '/users/' => 'index_users.php',
-            '/files/' => 'index_files.php',
-            '/users/update' => 'update_users.php',
-            '/files/update' => 'update_files.php',
-            '/users/delete' => 'delete_users.php'
-
-        ];
-        foreach ($route as $key => $val) {
-            if ($key == $address3) {
-                require $val;
+        $routes = array(
+            "/index"             => [
+                "className" => "Controller",
+                "method" => ""
+            ],
+            "/users/"           => [
+                "className" => "UserController",
+                "method" => "View"
+            ],
+            "/users/create/" => [
+                "className" => 'UserController',
+                "method" => "Create"
+            ],
+            "/users/update/"       => [
+                "className" => "UserController",
+                "method" => "Update"
+            ],
+            "/users/delete/"     => [
+                "className" => "UserController",
+                "method" => "Delete"
+            ],
+            "/files/"       => [
+                "className" => "FileController",
+                "method" => "View"
+            ],
+            "/files/create/" => [
+                "className" => 'FileController',
+                "method" => "Create"
+            ],
+            "/files/update/"   => [
+                "className" => "FileController",
+                "method" => "Update"
+            ],
+            "/files/delete/" => [
+                "className" => "FileController",
+                "method" => "Delete"
+            ]
+        );
+        foreach ($routes as $key => $val) {
+            if ($key == '/users/') {
+                $model = new User_Controller;
+                $model->IndexUsers();
+               // require $val;
             }
+            else {
+               // $model = new File_Controller;
+                //$model->IndexFiles();
+            }   
         }
     }
- 
+
 
     function getVar($name, $default = null)
     {
@@ -51,4 +86,3 @@ class Router extends Singleton
         return $address;
     }
 }
-

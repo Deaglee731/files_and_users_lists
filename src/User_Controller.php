@@ -1,15 +1,16 @@
 <?php 
 
-class User_Controller{
+require_once ("Controller.php");
+class User_Controller extends Controller{
     
 
-    public function IndexAction(){
+    public function IndexUsers(){
+        echo ("UserController");
 
     }
     public function UpdateAction(){
         
     }
-}
 }
 
 ?>

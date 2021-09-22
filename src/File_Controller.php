@@ -1,15 +1,26 @@
 <?php 
 
 require_once ("Controller.php");
-class File_Controller extends Controller{
-    
 
-    public function IndexFiles(){
-        echo ("FileController");
+
+
+class File_Controller extends Controller{
+
+
+    public function View(){
+        echo ("View");
+    }
+    public function Create(){
+        echo ("Create");
 
     }
-    public function UpdateAction(){
-        
+    public function Update(){
+        echo ("Update");
+
+    }
+    public function Delete(){
+        echo ("Delete");
+
     }
 }
 

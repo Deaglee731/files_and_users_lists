@@ -14,54 +14,55 @@ class Router extends Singleton
 
         $address2 = $this->getPath();
         $address3 = $this->name123($address2);
-        $routes = array(
+        $route = array(
             "/index"             => [
                 "className" => "Controller",
                 "method" => ""
             ],
             "/users/"           => [
-                "className" => "UserController",
+                "className" => "User_Controller",
                 "method" => "View"
             ],
             "/users/create/" => [
-                "className" => 'UserController',
+                "className" => 'User_Controller',
                 "method" => "Create"
             ],
             "/users/update/"       => [
-                "className" => "UserController",
+                "className" => "User_Controller",
                 "method" => "Update"
             ],
             "/users/delete/"     => [
-                "className" => "UserController",
+                "className" => "User_Controller",
                 "method" => "Delete"
             ],
             "/files/"       => [
-                "className" => "FileController",
+                "className" => "File_Controller",
                 "method" => "View"
             ],
             "/files/create/" => [
-                "className" => 'FileController',
+                "className" => 'File_Controller',
                 "method" => "Create"
             ],
             "/files/update/"   => [
-                "className" => "FileController",
+                "className" => "File_Controller",
                 "method" => "Update"
             ],
             "/files/delete/" => [
-                "className" => "FileController",
+                "className" => "File_Controller",
                 "method" => "Delete"
             ]
         );
-        foreach ($routes as $key => $val) {
-            if ($key == '/users/') {
-                $model = new User_Controller;
-                $model->IndexUsers();
-               // require $val;
+        foreach ($route as $key => $val) {
+
+            if ($key == $address3) {
+                
+                $controllerClass = $val['className'];
+                $method = (string)$val['method'];
+                $Controller = new $controllerClass();
+                $Controller->$method();
+                //require $val;
+            } else {
             }
-            else {
-               // $model = new File_Controller;
-                //$model->IndexFiles();
-            }   
         }
     }
 

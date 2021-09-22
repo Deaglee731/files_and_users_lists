@@ -68,7 +68,6 @@ Decode();
       </tr>
       <?php endforeach; ?>
   </table>
-
   </tbody>
 
 

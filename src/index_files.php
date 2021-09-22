@@ -51,7 +51,7 @@ Decode();
     
         <?php foreach ($result_mass as $docs) : ?>
           <td><?php echo $docs['Organization'] ?></td>
-          <td><?php echo $docs['Counterparty'] ?></td>
+          <td><?php echo $docs['Сounterparty'] ?></td>
           <td><?php echo $docs['Signatory'] ?></td>
           <td><?php echo $docs['Term-in'] ?></td>
           <td><?php echo $docs['Term-out'] ?></td>
@@ -62,10 +62,8 @@ Decode();
           <th scope="col">
             <a href="/files/update?id=<?php echo $docs['id'] ?>">EDIT</a>
             <a href="/files/update?id=<?php echo $docs['id'] ?>">DELETE</a>
-          </th>
-          <th scope="col">
-          </th>
-          </th>
+        </th>
+   
           </form>
       </tr>
     <?php endforeach; ?>

@@ -1,2 +1,2 @@
-<a href="index_users.php">users</a>
-<a href="index_files.php">files</a>
+<a href="/users/">users</a>
+<a href="/files/">files</a>

@@ -23,7 +23,7 @@ class Router extends Singleton
                 "className" => "User_Controller",
                 "method" => "View"
             ],
-            "/users/create/" => [
+            "/users/create" => [
                 "className" => 'User_Controller',
                 "method" => "Create"
             ],

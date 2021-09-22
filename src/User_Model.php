@@ -3,18 +3,17 @@ class UserModel
 {
 
 
-    function View()
+    function Views()
     {
-        echo "123VIEWS/USERS";
+        require("views/List_users_view.php");
     }
 
     function Create()
     {
-        echo "123CREATEUSERS";
+        
 
-        $Errors1 = CheckDate1();
-
-
+  
+        echo "CREATEUSERS";
         function CheckDate1()
         {
             $i = 0;
@@ -39,7 +38,7 @@ class UserModel
                 $i += 1;
             }
             if ($i == 0) {
-                header("Location:/users/");
+              //  header("Location:/users/");
                 $result = json_encode($_POST);
                 $current = file_get_contents("date_users/users/numberic");
                 $next = $current + 1;
@@ -48,6 +47,9 @@ class UserModel
             }
             return $Errors;
         }
+        $Errors = CheckDate1();
+
+        require_once("views/Create_users_view.php");
     }
 
     function Update()
@@ -59,23 +61,23 @@ class UserModel
         {
             $i = 0;
             if ($_POST['login'] == '') {
-                $Errors['login'] = "<h6> Поле login обязательно для заполнения </h6>";
+                $Errors1['login'] = "<h6> Поле login обязательно для заполнения </h6>";
                 $i += 1;
             }
 
             if ($_POST['firstname'] == '') {
-                $Errors['firstname'] = "<h6> Поле firstname обязательно для заполнения </h6>";
+                $Errors1['firstname'] = "<h6> Поле firstname обязательно для заполнения </h6>";
                 $i += 1;
             }
 
 
             if ($_POST['lastname'] == '') {
-                $Errors['lastname'] = "<h6> Поле lastname обязательно для заполнения </h6>";
+                $Errors1['lastname'] = "<h6> Поле lastname обязательно для заполнения </h6>";
                 $i += 1;
             }
 
             if ($_POST['birthday'] == '') {
-                $Errors['birthday'] = "<h6>Поле birthday обязательно для заполнения </h6>";
+                $Errors1['birthday'] = "<h6>Поле birthday обязательно для заполнения </h6>";
                 $i += 1;
             }
             if ($i == 0) {
@@ -83,7 +85,7 @@ class UserModel
                 $result = json_encode($_POST);
                 file_put_contents("date_users/users/{$_GET['id']}", $result);
             }
-            return $Errors;
+            return $Errors1;
         }
 
 

@@ -10,7 +10,7 @@ class User_Controller extends Controller{
 
 
     public function View(){
-        echo "VIEW777";
+        echo "VIEW USERS controller \n";
         $model = new UserModel();
         $model->Views();
     }
@@ -18,19 +18,19 @@ class User_Controller extends Controller{
 
         $model = new UserModel();
         $model->Create();
-        echo ("Create");
+        echo ("Create USERS CONTROLLER \n");
 
     }
     public function Update(){
         $model = new UserModel();
         $model->Update();
-        echo ("Update");
+        echo ("Update USERS CONTROLLER \n");
 
     }
     public function Delete(){
         $model = new UserModel();
-        $model->Dpdate();
-        echo ("Delete");
+        $model->Delete();
+        echo ("Delete controller \n");
 
     }
 

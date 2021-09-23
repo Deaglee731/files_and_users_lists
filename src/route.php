@@ -23,15 +23,15 @@ class Router extends Singleton
                 "className" => "User_Controller",
                 "method" => "View"
             ],
-            "/users/create" => [
+            "/users/create/" => [
                 "className" => 'User_Controller',
                 "method" => "Create"
             ],
-            "/users/update/"       => [
+            "/users/update"       => [
                 "className" => "User_Controller",
                 "method" => "Update"
             ],
-            "/users/delete/"     => [
+            "/users/delete"     => [
                 "className" => "User_Controller",
                 "method" => "Delete"
             ],
@@ -43,11 +43,11 @@ class Router extends Singleton
                 "className" => 'File_Controller',
                 "method" => "Create"
             ],
-            "/files/update/"   => [
+            "/files/update"   => [
                 "className" => "File_Controller",
                 "method" => "Update"
             ],
-            "/files/delete/" => [
+            "/files/delete" => [
                 "className" => "File_Controller",
                 "method" => "Delete"
             ]

@@ -41,7 +41,7 @@ function CheckDate1()
         $i += 1;
     }
     if ($i == 0) {
-        header('Location: /files/');
+       // header('Location: /files/');
         $result = json_encode($_POST);
         file_put_contents("date_files/documents/{$_GET['id']}", $result);
     }
@@ -72,7 +72,7 @@ if (isset($_GET['id'])) {
 
         $Errors = CheckDate1();
 
-        header("Location:/files/");
+       // header("Location:/files/");
     }
 }
 ?>

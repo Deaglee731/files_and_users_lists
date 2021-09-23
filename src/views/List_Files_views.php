@@ -1,3 +1,4 @@
+<html>
 <head>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
   <ling href="style/style.css">
@@ -18,7 +19,8 @@
       </tr>
     </thead>
     <tbody>
-    <?php foreach ($result_mass as $users) : ?>
+    <?php var_dump($result_mass);
+     foreach ($result_mass as $users) : ?>
       <tr>
         
           <td><?php echo $users['login'] ?></td>
@@ -50,3 +52,4 @@
 
 
 </body>
+</html>

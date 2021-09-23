@@ -14,19 +14,17 @@ class File_Controller extends Controller
         $result_mass = Decode();
         var_dump($result_mass);
         require_once("views/List_Files_views.php");
-        
     }
     public function Create()
     {
-        $Errors = array();
+
         echo ("Create FILE_CONTROLLER");
         echo "<br>";
-        $model = new FileModel();
-        $model->Create();
-        require_once("views/Views_files_create.php");
         var_dump($_POST);
-        FileModel::Save($_POST);
-        die('123');
+        if (CheckDate1() == TRUE) {
+            FileModel::Save($_POST);
+        }
+        require_once("views/Views_files_create.php");
     }
     public function Update()
     {

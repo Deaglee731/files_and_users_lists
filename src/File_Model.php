@@ -16,16 +16,15 @@ class FileModel
 
         function Decode()
         {
-            $directory = scandir("date_users/users/");
-            $result_out = array_diff($directory, [".", "..", "numberic", "result"]);
-            
+            $directory = scandir("date_files/documents/");
+            $result_out = array_diff($directory, [".", "..", "numberic"]);
             foreach ($result_out as $files) {
-                $decodestr = file_get_contents("date_users/users/{$files}");
-                $user = json_decode($decodestr, TRUE);
-                $user['id'] = $files;
-                $result_mass[] = $user;
-                $massive_id[$id] = $files;
+                $decodestr = file_get_contents("date_files/documents/{$files}");
+                $doc = json_decode($decodestr, TRUE);
+                $doc['id'] = $files;
+                $result_mass[] = $doc;
             }
+
             return $result_mass;
         }
         Decode();
@@ -37,16 +36,16 @@ class FileModel
 
     function Save()
     {
-           // header('Location: /files/');
-            $result = json_encode($_POST);
-            echo "<br>";
-            echo "<br>";
-            var_dump($result);
-            $current = file_get_contents("date_files/documents/numberic");
-            var_dump($current);
-            $next = $current + 1;
-            file_put_contents("date_files/documents/{$next}", $result);
-            file_put_contents("date_files/documents/numberic", $next);
+        // header('Location: /files/');
+        $result = json_encode($_POST);
+        echo "<br>";
+        echo "<br>";
+        var_dump($result);
+        $current = file_get_contents("date_files/documents/numberic");
+        var_dump($current);
+        $next = $current + 1;
+        file_put_contents("date_files/documents/{$next}", $result);
+        file_put_contents("date_files/documents/numberic", $next);
     }
 
 
@@ -55,8 +54,6 @@ class FileModel
 
     function Create()
     {
-        
-     
         // require_once("create_files.php");
     }
     function Update()

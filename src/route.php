@@ -1,6 +1,5 @@
 <?php
 
-require_once "engine.php";
 require_once "Singleton.php";
 require_once "User_Controller.php";
 require_once "File_Controller.php";
@@ -23,7 +22,7 @@ class Router extends Singleton
                 "className" => "User_Controller",
                 "method" => "View"
             ],
-            "/users/create/" => [
+            "/users/create" => [
                 "className" => 'User_Controller',
                 "method" => "Create"
             ],
@@ -39,7 +38,7 @@ class Router extends Singleton
                 "className" => "File_Controller",
                 "method" => "View"
             ],
-            "/files/create/" => [
+            "/files/create" => [
                 "className" => 'File_Controller',
                 "method" => "Create"
             ],

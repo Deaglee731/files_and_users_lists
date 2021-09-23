@@ -32,7 +32,7 @@
                         <?php echo $Errors['Organization']; ?>
                     </td>
                     <td>
-                        <input id=2 name="Сounterparty" type="text" value=<?= $_POST['Сounterparty'] ?>>
+                        <input id=2 name="Counterparty" type="text" value=<?= $_POST['Сounterparty'] ?>>
                         <?php echo $Errors['Сounterparty']; ?>
                     </td>
                     <td>

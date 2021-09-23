@@ -46,7 +46,7 @@
   </tbody>
 
 
-  <form action="/users/create" method="POST">
+  <form action="/files/create" method="POST">
     <button type="submit" class="btn btn-warning">Create</button>
 
 

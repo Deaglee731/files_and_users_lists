@@ -39,8 +39,7 @@ class FileModel
        
         // header('Location: /files/');
         $result = json_encode($data);
-        echo "<br>";
-        echo "<br>";
+    
         var_dump($result);
         $current = file_get_contents("date_files/documents/numberic");
        
@@ -54,31 +53,29 @@ class FileModel
     function Update($data,$id)
     {
         echo "UPDATE_FILE_MODEL";
-        echo "<br>";
-        $data = json_encode($data,TRUE);
-        file_put_contents("date_files/documents/{$id}", $data);
+
+        $data = json_encode($data);
+        var_dump($data);
+        file_put_contents("date_files/documents/$id", $data);
 
 
         //require_once("update_files.php");
     }
 
 
-    function Delete()
+    function Delete($id)
     {
         echo "DELETE_FILE_MODEL";
         echo "<br>";
-        if (isset($_GET['id'])){
-            $current_file  = $_GET['id'];
-             $current = file_get_contents("date_files/documents/$current_file");
-             if (!isset($current)){
-               echo "File deleted";
-             }
-             else{
-                 unlink("date_files/documents/$current_file");
-                 header('Location: /files/');
-             }
-          
-          }
+        $current_file  = $id;
+        var_dump($current_file);
+        $current = file_get_contents("date_files/documents/$current_file");
+        if (!isset($current)) {
+            echo "File deleted";
+        } else {
+            unlink("date_files/documents/$current_file");
+            //header('Location: /files/');
+        }       
     }
 }
 

@@ -38,7 +38,7 @@
 
           <th scope="col">
             <a href="/files/update?id=<?php echo $docs['id'] ?>">EDIT</a>
-            <a href="/files/update?id=<?php echo $docs['id'] ?>">DELETE</a>
+            <a href="/files/delete?id=<?php echo $docs['id'] ?>">DELETE</a>
         </th>
    
           </form>

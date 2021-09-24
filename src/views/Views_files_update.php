@@ -28,11 +28,11 @@
                 <tr>
         
                     <td>
-                        <input id=1 name="Organization" type="text" value=<?= $data['Organization'] ?>>
+                        <input id=1 name="Organization" type="text" value=<?= $data["Organization"] ?>>
                         <?php echo $Errors['Organization']; ?>
                     </td>
                     <td>
-                        <input id=2 name="Counterparty" type="text" value=<?= $data['Сounterparty'] ?>>
+                        <input id=2 name="Counterparty" type="text" value=<?= $data['Counterparty'] ?>>
                         <?php echo $Errors['Counterparty']; ?>
                     </td>
                     <td>
@@ -64,7 +64,7 @@
                 </tr>
             </tbody>
         </table>
-        <button type="submit" class="btn btn-warning">Create</button>
+        <button type="submit"  class="btn btn-warning">Update</button>
     </form>
 
 </body>

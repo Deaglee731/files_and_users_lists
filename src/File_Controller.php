@@ -34,33 +34,29 @@ class File_Controller extends Controller
     public function Update()
     {
         echo ("Update FILE_CONTROLLER");
-        echo "<br>";
-
         $id = $_GET['id'];
-        $data = $_REQUEST;
-        var_dump($id);
+        $data = file_get_contents("date_files/documents/$id");
+        $data =  json_decode($data, TRUE);
         var_dump($data);
-
-        $Errors = CheckDate1($data);
-        if ($Errors == TRUE) {
-            FileModel::Update($data, $id);
-            var_dump($data);
+        require_once("views/Views_files_update.php");
+        $data2 = $_POST;
+        $Errors = CheckDate1($data2);
+        if (empty($data2)){
             require_once("views/Views_files_update.php");
         } else {
-            $Errors = CheckDate1();
+            FileModel::Update($data2, $id);
             require_once("views/Views_files_update.php");
         }
+        var_dump($Errors);
+
+
+        require_once("views/Views_files_update.php");
     }
     public function Delete()
     {
-
-
-        if ($_POST == NULL) {
-        } else {
-            echo ("123");
-            FileModel::Delete($_POST);
-        }
-        require_once("views/List_Files_views.php");
+        $id = $_GET['id'];
+        FileModel::Delete($id);
+        //  require_once("views/List_Files_views.php");
         echo ("Delete FILE_CONTROLLER");
         echo "<br>";
     }

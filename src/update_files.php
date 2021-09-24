@@ -8,8 +8,8 @@ function CheckDate1()
         $i += 1;
     }
 
-    if ($_POST['Сounterparty'] == '') {
-        $Errors['Сounterparty'] = "<h5> Поле Контрагент обязательно для заполнения </h5>";
+    if ($_POST['Counterparty'] == '') {
+        $Errors['Counterparty'] = "<h5> Поле Контрагент обязательно для заполнения </h5>";
         $i += 1;
     }
 

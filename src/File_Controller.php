@@ -21,7 +21,11 @@ class File_Controller extends Controller
         echo ("Create FILE_CONTROLLER");
         echo "<br>";
         var_dump($_POST);
-        if (CheckDate1() == TRUE) {
+        if ($_POST == NULL) {
+        }
+        else
+        {
+            echo ("123");
             FileModel::Save($_POST);
         }
         require_once("views/Views_files_create.php");

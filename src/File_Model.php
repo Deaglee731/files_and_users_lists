@@ -47,6 +47,7 @@ class FileModel
         file_put_contents("date_files/documents/{$next}", $result);
         file_put_contents("date_files/documents/numberic", $next);
     }
+    
 
 
 
@@ -60,7 +61,17 @@ class FileModel
     {
         echo "UPDATE_FILE_MODEL";
         echo "<br>";
-        require_once("update_files.php");
+
+        $result = json_encode($_POST);
+        echo "<br>";
+        echo "<br>";
+        var_dump($result);
+        $current = file_get_contents("date_files/documents/numberic");
+        var_dump($current);
+        file_put_contents("date_files/documents/{$current}", $result);
+
+
+        //require_once("update_files.php");
     }
 
 
@@ -83,8 +94,8 @@ function CheckDate1()
         $i += 1;
     }
 
-    if ($_POST['Сounterparty'] == '') {
-        $Errors['Сounterparty'] = "<h5> Поле Контрагент обязательно для заполнения </h5>";
+    if ($_POST['Counterparty'] == '') {
+        $Errors['Counterparty'] = "<h5> Поле Контрагент обязательно для заполнения </h5>";
         $i += 1;
     }
 

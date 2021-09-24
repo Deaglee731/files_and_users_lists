@@ -34,41 +34,29 @@ class FileModel
 
 
 
-    function Save()
+    function Create($data)
     {
+       
         // header('Location: /files/');
-        $result = json_encode($_POST);
+        $result = json_encode($data);
         echo "<br>";
         echo "<br>";
         var_dump($result);
         $current = file_get_contents("date_files/documents/numberic");
+       
         var_dump($current);
+        
         $next = $current + 1;
         file_put_contents("date_files/documents/{$next}", $result);
         file_put_contents("date_files/documents/numberic", $next);
     }
-    
 
-
-
-
-
-    function Create()
-    {
-        // require_once("create_files.php");
-    }
-    function Update()
+    function Update($data,$id)
     {
         echo "UPDATE_FILE_MODEL";
         echo "<br>";
-
-        $result = json_encode($_POST);
-        echo "<br>";
-        echo "<br>";
-        var_dump($result);
-        $current = file_get_contents("date_files/documents/numberic");
-        var_dump($current);
-        file_put_contents("date_files/documents/{$current}", $result);
+        $data = json_encode($data,TRUE);
+        file_put_contents("date_files/documents/{$id}", $data);
 
 
         //require_once("update_files.php");
@@ -79,50 +67,61 @@ class FileModel
     {
         echo "DELETE_FILE_MODEL";
         echo "<br>";
-        require_once("delete_files.php");
+        if (isset($_GET['id'])){
+            $current_file  = $_GET['id'];
+             $current = file_get_contents("date_files/documents/$current_file");
+             if (!isset($current)){
+               echo "File deleted";
+             }
+             else{
+                 unlink("date_files/documents/$current_file");
+                 header('Location: /files/');
+             }
+          
+          }
     }
 }
 
 
 
 
-function CheckDate1()
+function CheckDate1($data)
 {
     $i = 0;
-    if ($_POST['Organization'] == '') {
+    if ($data['Organization'] == '') {
         $Errors['Organization'] = "<h5> Поле Организация обязательно для заполнения </h5>";
         $i += 1;
     }
 
-    if ($_POST['Counterparty'] == '') {
+    if ($data['Counterparty'] == '') {
         $Errors['Counterparty'] = "<h5> Поле Контрагент обязательно для заполнения </h5>";
         $i += 1;
     }
 
 
-    if ($_POST['Signatory'] == '') {
+    if ($data['Signatory'] == '') {
         $Errors['Signatory'] = "<h5> Поле Подписант обязательно для заполнения </h5>";
         $i += 1;
     }
 
-    if ($_POST['Term-in'] == '') {
+    if ($data['Term-in'] == '') {
         $Errors['Term-in'] = "<h5>Поле Срок договора обязательно для заполнения </h5>";
         $i += 1;
     }
-    if ($_POST['Term-in'] == '') {
+    if ($data['Term-in'] == '') {
         $Errors['Term-in'] = "<h5>Поле Срок договора обязательно для заполнения </h5>";
         $i += 1;
     }
 
-    if ($_POST['Product'] == '') {
+    if ($data['Product'] == '') {
         $Errors['Product'] = "<h5>Поле Предмет договора обязательно для заполнения </h5>";
         $i += 1;
     }
-    if ($_POST['Amount'] == '') {
+    if ($data['Amount'] == '') {
         $Errors['Amount'] = "<h5>Поле Сумма договора обязательно для заполнения </h5>";
         $i += 1;
     }
-    if ($_POST['Requisites'] == '') {
+    if ($data['Requisites'] == '') {
         $Errors['Requisites'] = "<h5>Поле Реквизиты обязательно для заполнения </h5>";
         $i += 1;
     }

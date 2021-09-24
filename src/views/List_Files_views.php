@@ -12,7 +12,7 @@
       <tr>
 
         <th scope="col">Organization</th>
-        <th scope="col">Сounterparty</th>
+        <th scope="col">Counterparty</th>
         <th scope="col">Signatory</th>
         <th scope="col">Term-in</th>
         <th scope="col">Term-out</th>
@@ -28,7 +28,7 @@
     
         <?php foreach ($result_mass as $docs) : ?>
           <td><?php echo $docs['Organization'] ?></td>
-          <td><?php echo $docs['Сounterparty'] ?></td>
+          <td><?php echo $docs['Counterparty'] ?></td>
           <td><?php echo $docs['Signatory'] ?></td>
           <td><?php echo $docs['Term-in'] ?></td>
           <td><?php echo $docs['Term-out'] ?></td>

@@ -88,7 +88,7 @@ if (isset($_GET['id'])) {
             <thead>
                 <tr>
                     <th>Organization</th>
-                    <th>Сounterparty</th>
+                    <th>Counterparty</th>
                     <th>Signatory</th>
                     <th>Term-in</th>
                     <th>Term-out</th>
@@ -105,8 +105,8 @@ if (isset($_GET['id'])) {
                         <?php echo $Errors['Organization']; ?>
                     </td>
                     <td>
-                        <input id=2 name="Сounterparty" type="text" value=<?= $json_array['Сounterparty'] ?>>
-                        <?php echo $Errors['Сounterparty']; ?>
+                        <input id=2 name="Counterparty" type="text" value=<?= $json_array['Counterparty'] ?>>
+                        <?php echo $Errors['Counterparty']; ?>
                     </td>
                     <td>
                         <input id=3 name="Signatory" type="text" value=<?= $json_array['Signatory'] ?>>

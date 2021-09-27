@@ -12,7 +12,7 @@ use Controllers\User_Controller;
 
 
 
-class UserModel extends Models
+class User_Model extends Model
 {
     protected $path_next = "date_users/users/numberic";
     protected $path_file = "date_users/users/";

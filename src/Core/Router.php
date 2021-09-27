@@ -5,6 +5,7 @@ namespace Core;
 // require_once "File_Controller.php";
 
 use Core\Singleton;
+use Controllers\Controller;
 use Controllers\User_Controller;
 use Controllers\File_Controller;
 
@@ -20,39 +21,39 @@ class Router extends Singleton
         $address3 = $this->name123($address2);
         $route = array(
             "/index"             => [
-                "className" => "Controller",
+                "className" => Controller::class,
                 "method" => ""
             ],
             "/users/"           => [
-                "className" => "User_Controller",
+                "className" => "Controllers\User_Controller",
                 "method" => "View"
             ],
             "/users/create" => [
-                "className" => 'User_Controller',
+                "className" => 'Controllers\User_Controller',
                 "method" => "Create"
             ],
             "/users/update"       => [
-                "className" => "User_Controller",
+                "className" => "Controllers\User_Controller",
                 "method" => "Update"
             ],
             "/users/delete"     => [
-                "className" => "User_Controller",
+                "className" => "Controllers\User_Controller",
                 "method" => "Delete"
             ],
             "/files/"       => [
-                "className" => "File_Controller",
+                "className" => "Controllers\File_Controller",
                 "method" => "View"
             ],
             "/files/create" => [
-                "className" => 'File_Controller',
+                "className" => 'Controllers\File_Controller',
                 "method" => "Create"
             ],
             "/files/update"   => [
-                "className" => "File_Controller",
+                "className" => "Controllers\File_Controller",
                 "method" => "Update"
             ],
             "/files/delete" => [
-                "className" => "File_Controller",
+                "className" => "Controllers\File_Controller",
                 "method" => "Delete"
             ]
         );

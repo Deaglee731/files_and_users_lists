@@ -1,6 +1,9 @@
 <?php
 namespace Controllers;
-use Models\FileModel;
+use Models\File_Model;
+use Validators\File_validation; // ETO TYT
+
+
 //require_once("Controller.php");
 //require_once("File_Model.php");
 
@@ -12,8 +15,7 @@ class File_Controller extends Controller
 {
     public function View()
     {
-        $model = new FileModel();
-        $model->View();
+        $model = new File_Model();
         $result_mass = $model->Decode();
         require_once("views/List_Files_views.php");
     }
@@ -29,9 +31,9 @@ class File_Controller extends Controller
         $data['Amount'] = $_POST['Amount'];
         $data['Requisites'] = $_POST['Requisites'];
         if (count($_POST) > 0) {
-            $Errors = Validation($data);
+            $Errors = Validation2($data); // ETO TYT
             if (empty($Errors)) {
-                $obj = new FileModel();
+                $obj = new File_Model();
                 $obj->Create($data);
                 header('Location: /files/');
                 return;
@@ -54,9 +56,9 @@ class File_Controller extends Controller
             $data['Product'] = $_POST['Product'];
             $data['Amount'] = $_POST['Amount'];
             $data['Requisites'] = $_POST['Requisites'];
-            $Errors = Validation($data);
+            $Errors = Validation2($data); // ETO TYT
             if (empty($Errors)) {
-                $obj = new FileModel();
+                $obj = new File_Model();
                 $obj->Update($data,$id);
                 header('Location: /files/');
                 return;
@@ -68,7 +70,7 @@ class File_Controller extends Controller
     public function Delete()
     {
         $id = $_GET['id'];
-        $obj = new FileModel();
+        $obj = new File_Model();
         $obj->Delete($id);
     }
 }

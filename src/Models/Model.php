@@ -2,7 +2,7 @@
 
 namespace Models;
 
- class Models {
+ class Model {
 
     protected $path_next;
     protected $path_file;

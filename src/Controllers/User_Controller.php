@@ -1,8 +1,10 @@
 <?php
 namespace Controllers;
-use Models\UserModel;
-require_once("Controller.php");
-require_once("User_Model.php");
+use Controllers\Controller;
+use Models\User_Model;
+use Validators\User_validation;
+
+use function Models\Validation2;
 
 class User_Controller extends Controller
 {
@@ -10,8 +12,7 @@ class User_Controller extends Controller
 
     public function View()
     {
-        $model = new UserModel();
-        $model->View();
+        $model = new User_Model();
         $result_mass = $model->Decode();
         require_once("views/List_users_views.php");
     }
@@ -23,9 +24,9 @@ class User_Controller extends Controller
         $data['lastname'] = $_POST['lastname'];
         $data['birthday'] = $_POST['birthday'];
         if (count($_POST) > 0) {
-            $Errors = Validation2($data);
+            $Errors = Validation2($data);// ETO TYT
             if (empty($Errors)) {
-                $obj = new UserModel();
+                $obj = new User_Model();
                 $obj->Create($data);
                 header('Location: /users/');
                 return;
@@ -45,9 +46,9 @@ class User_Controller extends Controller
             $data['firstname'] = $_POST['firstname'];
             $data['lastname'] = $_POST['lastname'];
             $data['birthday'] = $_POST['birthday'];
-            $Errors = Validation2($data);
+            $Errors = Validation2($data); // ETO TYT
             if (empty($Errors)) {
-                $obj = new UserModel();
+                $obj = new User_Model();
                 $obj->Update($data,$id);
                 header('Location: /users/');
                 return;
@@ -59,7 +60,7 @@ class User_Controller extends Controller
     public function Delete()
     {
         $id = $_GET['id'];
-        $obj = new UserModel();
+        $obj = new User_Model();
         $obj->Delete($id);
     }
 }

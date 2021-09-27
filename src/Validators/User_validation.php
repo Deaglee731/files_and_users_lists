@@ -1,27 +1,4 @@
 <?php
-
-namespace Models;
-
-use Models;
-use Controllers\User_Controller;
-
-
-
-
-
-
-
-
-class UserModel extends Models
-{
-    protected $path_next = "date_users/users/numberic";
-    protected $path_file = "date_users/users/";
-    protected $path_index = "/users/";
-}
-
-
-
-
 function Validation2($data)
 {
 
@@ -44,3 +21,5 @@ function Validation2($data)
     }
     return $Errors;
 }
+
+?>

@@ -1,2 +1,6 @@
-<a href="/users/">users</a>
-<a href="/files/">files</a>
+<?php 
+
+require_once("vendor/autoload.php");
+use Core\Router;
+$router = Router::getInstance();
+$router->run();

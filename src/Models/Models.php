@@ -1,8 +1,8 @@
 <?php
 
+namespace Models;
 
-//
- class Model {
+ class Models {
 
     protected $path_next;
     protected $path_file;

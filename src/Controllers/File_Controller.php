@@ -1,7 +1,8 @@
 <?php
-
-require_once("Controller.php");
-require_once("File_Model.php");
+namespace Controllers;
+use Models\FileModel;
+//require_once("Controller.php");
+//require_once("File_Model.php");
 
 
 

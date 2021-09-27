@@ -1,20 +1,5 @@
 <?php
 
-namespace Models;
-use Models\Models;
-
-
-class FileModel extends Models
-{
-    protected $path_next = "date_files/documents/numberic";
-    protected $path_file = "date_files/documents/";
-    protected $path_index = "/files/";
-}
-
-
-
-
-
 function Validation($data)
 {
 
@@ -51,3 +36,5 @@ function Validation($data)
 
     return $Errors;
 }
+
+?>

@@ -1,5 +1,6 @@
 <?php
-
+namespace Controllers;
+use Models\UserModel;
 require_once("Controller.php");
 require_once("User_Model.php");
 

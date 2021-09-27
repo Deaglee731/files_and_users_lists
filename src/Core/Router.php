@@ -1,8 +1,13 @@
 <?php
+namespace Core;
+//require_once "Singleton.php";
+//require_once "User_Controller.php";
+// require_once "File_Controller.php";
 
-require_once "Singleton.php";
-require_once "User_Controller.php";
-require_once "File_Controller.php";
+use Core\Singleton;
+use Controllers\User_Controller;
+use Controllers\File_Controller;
+
 $address = ($_SERVER['REQUEST_URI']);
 
 

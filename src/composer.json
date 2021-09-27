@@ -1,0 +1,15 @@
+{
+    "name": "user/src",
+    "authors": [
+        {
+            "name": "Deaglee731",
+            "email": "deagleeeee01@gmail.com"
+        }
+    ],
+    "require": {},
+    "autoload":{
+        "psr-4": {
+            "": "./"
+        }
+    }
+}

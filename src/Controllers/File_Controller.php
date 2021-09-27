@@ -3,13 +3,17 @@
 require_once("Controller.php");
 require_once("File_Model.php");
 
+
+
+
+
 class File_Controller extends Controller
 {
     public function View()
     {
         $model = new FileModel();
-        $model->View_file();
-        $result_mass = Decode();
+        $model->View();
+        $result_mass = $model->Decode();
         require_once("views/List_Files_views.php");
     }
     public function Create()
@@ -26,8 +30,8 @@ class File_Controller extends Controller
         if (count($_POST) > 0) {
             $Errors = Validation($data);
             if (empty($Errors)) {
-
-                FileModel::Create($data);
+                $obj = new FileModel();
+                $obj->Create($data);
                 header('Location: /files/');
                 return;
             }
@@ -51,7 +55,8 @@ class File_Controller extends Controller
             $data['Requisites'] = $_POST['Requisites'];
             $Errors = Validation($data);
             if (empty($Errors)) {
-                FileModel::Update($data, $id);
+                $obj = new FileModel();
+                $obj->Update($data,$id);
                 header('Location: /files/');
                 return;
             }
@@ -62,6 +67,7 @@ class File_Controller extends Controller
     public function Delete()
     {
         $id = $_GET['id'];
-        FileModel::Delete($id);
+        $obj = new FileModel();
+        $obj->Delete($id);
     }
 }

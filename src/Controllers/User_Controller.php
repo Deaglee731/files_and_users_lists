@@ -10,8 +10,8 @@ class User_Controller extends Controller
     public function View()
     {
         $model = new UserModel();
-        $model->View_Users();
-        $result_mass = Decode();
+        $model->View();
+        $result_mass = $model->Decode();
         require_once("views/List_users_views.php");
     }
     public function Create()
@@ -24,8 +24,8 @@ class User_Controller extends Controller
         if (count($_POST) > 0) {
             $Errors = Validation2($data);
             if (empty($Errors)) {
-
-                UserModel::Create($data);
+                $obj = new UserModel();
+                $obj->Create($data);
                 header('Location: /users/');
                 return;
             }
@@ -46,7 +46,8 @@ class User_Controller extends Controller
             $data['birthday'] = $_POST['birthday'];
             $Errors = Validation2($data);
             if (empty($Errors)) {
-                UserModel::Update($data, $id);
+                $obj = new UserModel();
+                $obj->Update($data,$id);
                 header('Location: /users/');
                 return;
             }
@@ -57,6 +58,7 @@ class User_Controller extends Controller
     public function Delete()
     {
         $id = $_GET['id'];
-        UserModel::Delete($id);
+        $obj = new UserModel();
+        $obj->Delete($id);
     }
 }

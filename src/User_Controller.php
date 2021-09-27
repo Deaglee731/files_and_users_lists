@@ -1,40 +1,62 @@
-<?php 
+<?php
 
-require_once ("Controller.php");
-require_once ("User_Model.php");
-require_once ("User_view.php");
+require_once("Controller.php");
+require_once("User_Model.php");
 
-class User_Controller extends Controller{
-    
-
+class User_Controller extends Controller
+{
 
 
-    public function View(){
-        echo "VIEW USERS controller \n";
+    public function View()
+    {
         $model = new UserModel();
-        $model->Views();
+        $model->View_Users();
+        $result_mass = Decode();
+        require_once("views/List_users_views.php");
     }
-    public function Create(){
+    public function Create()
+    {
 
-        $model = new UserModel();
-        $model->Create();
-        echo ("Create USERS CONTROLLER \n");
+        $data['login'] = $_POST['login'];
+        $data['firstname'] = $_POST['firstname'];
+        $data['lastname'] = $_POST['lastname'];
+        $data['birthday'] = $_POST['birthday'];
+        if (count($_POST) > 0) {
+            $Errors = Validation2($data);
+            if (empty($Errors)) {
 
+                UserModel::Create($data);
+                header('Location: /users/');
+                return;
+            }
+        }
+
+        require("views/Users_create_views.php");
     }
-    public function Update(){
-        $model = new UserModel();
-        $model->Update();
-        echo ("Update USERS CONTROLLER \n");
+    public function Update()
+    {
+        $id = $_GET['id'];
+        
+        $data = file_get_contents("date_users/users/$id");
+        $data =  json_decode($data, TRUE);
+        if (count($_POST) > 0) {
+            $data['login'] = $_POST['login'];
+            $data['firstname'] = $_POST['firstname'];
+            $data['lastname'] = $_POST['lastname'];
+            $data['birthday'] = $_POST['birthday'];
+            $Errors = Validation2($data);
+            if (empty($Errors)) {
+                UserModel::Update($data, $id);
+                header('Location: /users/');
+                return;
+            }
+        }
 
+        require_once("views/Views_users_update.php");
     }
-    public function Delete(){
-        $model = new UserModel();
-        $model->Delete();
-        echo ("Delete controller \n");
-
+    public function Delete()
+    {
+        $id = $_GET['id'];
+        UserModel::Delete($id);
     }
-
-
 }
-
-?>

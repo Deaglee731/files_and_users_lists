@@ -7,48 +7,55 @@ class File_Controller extends Controller
 {
     public function View()
     {
-        echo "VIEW_FILE_CONTROLLER";
-        echo "<br>";
         $model = new FileModel();
         $model->View_file();
         $result_mass = Decode();
-        var_dump($result_mass);
         require_once("views/List_Files_views.php");
     }
     public function Create()
     {
 
-        echo ("Create FILE_CONTROLLER");
-        echo "<br>";
-        var_dump($_POST);
-        $data = $_POST;
-        $Errors = CheckDate1($_POST);
-        var_dump($Errors);
-        if (!empty($data)) {
-            FileModel::Create($data);
-            require_once("views/Files_create_views.php");
-        } else {
-            require_once("views/Files_create_views.php");
+        $data['Organization'] = $_POST['Organization'];
+        $data['Counterparty'] = $_POST['Counterparty'];
+        $data['Signatory'] = $_POST['Signatory'];
+        $data['Term-in'] = $_POST['Term-in'];
+        $data['Term-out'] = $_POST['Term-out'];
+        $data['Product'] = $_POST['Product'];
+        $data['Amount'] = $_POST['Amount'];
+        $data['Requisites'] = $_POST['Requisites'];
+        if (count($_POST) > 0) {
+            $Errors = Validation($data);
+            if (empty($Errors)) {
+
+                FileModel::Create($data);
+                header('Location: /files/');
+                return;
+            }
         }
+
+        require("views/Files_create_views.php");
     }
     public function Update()
     {
-        echo ("Update FILE_CONTROLLER");
         $id = $_GET['id'];
         $data = file_get_contents("date_files/documents/$id");
         $data =  json_decode($data, TRUE);
-        var_dump($data);
-        require_once("views/Views_files_update.php");
-        $data2 = $_POST;
-        $Errors = CheckDate1($data2);
-        if (empty($data2)){
-            require_once("views/Views_files_update.php");
-        } else {
-            FileModel::Update($data2, $id);
-            require_once("views/Views_files_update.php");
+        if (count($_POST) > 0) {
+            $data['Organization'] = $_POST['Organization'];
+            $data['Counterparty'] = $_POST['Counterparty'];
+            $data['Signatory'] = $_POST['Signatory'];
+            $data['Term-in'] = $_POST['Term-in'];
+            $data['Term-out'] = $_POST['Term-out'];
+            $data['Product'] = $_POST['Product'];
+            $data['Amount'] = $_POST['Amount'];
+            $data['Requisites'] = $_POST['Requisites'];
+            $Errors = Validation($data);
+            if (empty($Errors)) {
+                FileModel::Update($data, $id);
+                header('Location: /files/');
+                return;
+            }
         }
-        var_dump($Errors);
-
 
         require_once("views/Views_files_update.php");
     }
@@ -56,8 +63,5 @@ class File_Controller extends Controller
     {
         $id = $_GET['id'];
         FileModel::Delete($id);
-        //  require_once("views/List_Files_views.php");
-        echo ("Delete FILE_CONTROLLER");
-        echo "<br>";
     }
 }

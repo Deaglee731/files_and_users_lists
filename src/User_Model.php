@@ -1,75 +1,88 @@
 <?php
+
+require_once("User_Controller.php");
+
+
 class UserModel
 {
 
 
-    function Views()
+    function View_Users()
     {
-        //require("views/List_users_view.php");
-    }
+        function Decode()
+        {
+            $directory = scandir("date_users/users/");
+            $result_out = array_diff($directory, [".", "..", "numberic"]);
+            foreach ($result_out as $files) {
+                $decodestr = file_get_contents("date_users/users/{$files}");
+                $doc = json_decode($decodestr, TRUE);
+                $doc['id'] = $files;
+                $result_mass[] = $doc;
+            }
 
-    function Create()
-    {
-        $i = 0;
-        if ($_POST['Organization'] == '') {
-            $Errors['Organization'] = "<h5> Поле Организация обязательно для заполнения </h5>";
-            $i += 1;
+            return $result_mass;
         }
-
-        if ($_POST['Сounterparty'] == '') {
-            $Errors['Сounterparty'] = "<h5> Поле Контрагент обязательно для заполнения </h5>";
-            $i += 1;
-        }
-
-
-        if ($_POST['Signatory'] == '') {
-            $Errors['Signatory'] = "<h5> Поле Подписант обязательно для заполнения </h5>";
-            $i += 1;
-        }
-
-        if ($_POST['Term-in'] == '') {
-            $Errors['Term-in'] = "<h5>Поле Срок договора обязательно для заполнения </h5>";
-            $i += 1;
-        }
-        if ($_POST['Term-in'] == '') {
-            $Errors['Term-in'] = "<h5>Поле Срок договора обязательно для заполнения </h5>";
-            $i += 1;
-        }
-
-        if ($_POST['Product'] == '') {
-            $Errors['Product'] = "<h5>Поле Предмет договора обязательно для заполнения </h5>";
-            $i += 1;
-        }
-        if ($_POST['Amount'] == '') {
-            $Errors['Amount'] = "<h5>Поле Сумма договора обязательно для заполнения </h5>";
-            $i += 1;
-        }
-        if ($_POST['Requisites'] == '') {
-            $Errors['Requisites'] = "<h5>Поле Реквизиты обязательно для заполнения </h5>";
-            $i += 1;
-        }
-       
-        echo "CREATE_USER_MODEL";
-        echo "<br>";
         
+        Decode();
     }
 
 
 
-
-    function Update()
+    function Create($data)
     {
-        echo "UPDATE_USER_MODEL";
-        echo "<br>";
+        $result = json_encode($data);
+        $current = file_get_contents("date_users/users/numberic");
+        $next = $current + 1;
+        file_put_contents("date_users/users/{$next}", $result);
+        file_put_contents("date_users/users/numberic", $next);
     }
 
-
-
-    function Delete()
+    function Update($data, $id)
     {
-        echo "DELETE_USER_MODEL";
-        echo "<br>";
 
-    
+
+        header('Location: /users/');
+        $data = json_encode($data);
+        file_put_contents("date_users/users/$id", $data);
     }
+
+
+    function Delete($id)
+    {
+
+        $current_file  = $id;
+        $current = file_get_contents("date_users/users/$current_file");
+        if (!isset($current)) {
+            echo "File deleted";
+        } else {
+            unlink("date_users/users/$current_file");
+            header('Location: /users/');
+        }
+    }
+}
+
+
+
+
+function Validation2($data)
+{
+
+    $Errors = [];
+    if ($data['login'] == '') {
+        $Errors['login'] = "<h5> Поле Login обязательно для заполнения </h5>";
+    }
+
+    if ($data['firstname'] == '') {
+        $Errors['firstname'] = "<h5> Поле Firstname обязательно для заполнения </h5>";
+    }
+
+
+    if ($data['lastname'] == '') {
+        $Errors['lastname'] = "<h5> Поле Lastname обязательно для заполнения </h5>";
+    }
+
+    if ($data['birthday'] == '') {
+        $Errors['birthday'] = "<h5>Поле Birthday обязательно для заполнения </h5>";
+    }
+    return $Errors;
 }

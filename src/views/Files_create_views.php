@@ -25,7 +25,7 @@
             </thead>
             <tbody>
                 <tr>
-        
+
                     <td>
                         <input id=1 name="Organization" type="text" value=<?= $data['Organization'] ?>>
                         <?php echo $Errors['Organization']; ?>

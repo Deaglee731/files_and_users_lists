@@ -1,5 +1,7 @@
 <?php
 namespace Controllers;
+
+use Core\View;
 use Models\User_Model;
 use Validators\User_validation;
 
@@ -12,7 +14,9 @@ class User_Controller extends Controller
     {
         $model = new User_Model();
         $result_mass = $model->Decode();
-        require_once("views/List_users_views.php");
+        $template = "List_users_views";
+        View::render($template,$result_mass);
+        //require_once("views/List_users_views.php");
     }
     public function Create()
     {
@@ -22,7 +26,7 @@ class User_Controller extends Controller
         $data['lastname'] = $_POST['lastname'];
         $data['birthday'] = $_POST['birthday'];
         if (count($_POST) > 0) {
-            $Errors = User_validation::Validation2($data);// ETO TYT
+            $Errors = User_validation::Validation2($data);
             if (empty($Errors)) {
                 $obj = new User_Model();
                 $obj->Create($data);
@@ -30,8 +34,9 @@ class User_Controller extends Controller
                 return;
             }
         }
-
-        require("views/Users_create_views.php");
+        $template = "Users_create_views";
+        View::render($template,$data);
+        //require("views/Users_create_views.php");
     }
     public function Update()
     {
@@ -44,7 +49,7 @@ class User_Controller extends Controller
             $data['firstname'] = $_POST['firstname'];
             $data['lastname'] = $_POST['lastname'];
             $data['birthday'] = $_POST['birthday'];
-            $Errors = User_validation::Validation2($data); // ETO TYT
+            $Errors = User_validation::Validation2($data); 
             if (empty($Errors)) {
                 $obj = new User_Model();
                 $obj->Update($data,$id);
@@ -53,7 +58,9 @@ class User_Controller extends Controller
             }
         }
 
-        require_once("views/Views_users_update.php");
+        $template = "Views_users_update";
+        View::render($template,$data);
+        //require_once("views/Views_users_update.php");
     }
     public function Delete()
     {

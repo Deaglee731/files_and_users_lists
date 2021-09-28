@@ -10,9 +10,9 @@ class File_Controller extends Controller
     {
         $model = new File_Model();
         $result_mass = $model->Decode();
-        //require_once("views/List_Files_views.php");
         $template = "List_Files_views";
-        View::render($template,$result_mass);
+        $Errors=[];
+        View::render($template,$result_mass,$Errors);
     }
     public function Create()
     {
@@ -26,7 +26,7 @@ class File_Controller extends Controller
         $data['Amount'] = $_POST['Amount'];
         $data['Requisites'] = $_POST['Requisites'];
         if (count($_POST) > 0) {
-            $Errors = File_validation::Validation($data); // ETO TYT
+            $Errors = File_validation::Validation($data); 
             if (empty($Errors)) {
                 $obj = new File_Model();
                 $obj->Create($data);
@@ -35,8 +35,7 @@ class File_Controller extends Controller
             }
         }
         $template = "Files_create_views";
-        View::render($template,$data);
-        //require("views/Files_create_views.php");
+        View::render($template,$data,$Errors);
     }
     public function Update()
     {
@@ -52,7 +51,7 @@ class File_Controller extends Controller
             $data['Product'] = $_POST['Product'];
             $data['Amount'] = $_POST['Amount'];
             $data['Requisites'] = $_POST['Requisites'];
-            $Errors = File_validation::Validation($data); // ETO TYT
+            $Errors = File_validation::Validation($data); 
             if (empty($Errors)) {
                 $obj = new File_Model();
                 $obj->Update($data,$id);
@@ -61,8 +60,7 @@ class File_Controller extends Controller
             }
         }
         $template = "Views_files_update";
-        View::render($template,$data);
-        //require_once("views/Views_files_update.php");
+        View::render($template,$data,$Errors);
     }
     public function Delete()
     {

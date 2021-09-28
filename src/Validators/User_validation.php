@@ -5,7 +5,7 @@ namespace Validators;
 
 class User_validation
 {
-    public function Validation($data)
+    public function Validation2($data)
     {
         $Errors = [];
         if ($data['login'] == '') {

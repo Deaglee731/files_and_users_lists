@@ -1,14 +1,7 @@
 <?php
 namespace Controllers;
 use Models\File_Model;
-use Validators\File_validation; // ETO TYT
-
-
-//require_once("Controller.php");
-//require_once("File_Model.php");
-
-
-
+use Validators\File_validation;
 
 
 class File_Controller extends Controller
@@ -31,7 +24,7 @@ class File_Controller extends Controller
         $data['Amount'] = $_POST['Amount'];
         $data['Requisites'] = $_POST['Requisites'];
         if (count($_POST) > 0) {
-            $Errors = Validation2($data); // ETO TYT
+            $Errors = File_validation::Validation($data); // ETO TYT
             if (empty($Errors)) {
                 $obj = new File_Model();
                 $obj->Create($data);
@@ -56,7 +49,7 @@ class File_Controller extends Controller
             $data['Product'] = $_POST['Product'];
             $data['Amount'] = $_POST['Amount'];
             $data['Requisites'] = $_POST['Requisites'];
-            $Errors = Validation2($data); // ETO TYT
+            $Errors = File_validation::Validation($data); // ETO TYT
             if (empty($Errors)) {
                 $obj = new File_Model();
                 $obj->Update($data,$id);

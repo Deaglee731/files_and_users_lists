@@ -1,10 +1,8 @@
 <?php
 namespace Controllers;
-use Controllers\Controller;
 use Models\User_Model;
 use Validators\User_validation;
 
-use function Models\Validation2;
 
 class User_Controller extends Controller
 {
@@ -24,7 +22,7 @@ class User_Controller extends Controller
         $data['lastname'] = $_POST['lastname'];
         $data['birthday'] = $_POST['birthday'];
         if (count($_POST) > 0) {
-            $Errors = Validation2($data);// ETO TYT
+            $Errors = User_validation::Validation2($data);// ETO TYT
             if (empty($Errors)) {
                 $obj = new User_Model();
                 $obj->Create($data);
@@ -46,7 +44,7 @@ class User_Controller extends Controller
             $data['firstname'] = $_POST['firstname'];
             $data['lastname'] = $_POST['lastname'];
             $data['birthday'] = $_POST['birthday'];
-            $Errors = Validation2($data); // ETO TYT
+            $Errors = User_validation::Validation2($data); // ETO TYT
             if (empty($Errors)) {
                 $obj = new User_Model();
                 $obj->Update($data,$id);

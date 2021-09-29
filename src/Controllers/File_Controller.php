@@ -27,9 +27,7 @@ class File_Controller extends Controller
         $data['Requisites'] = $_POST['Requisites'];
         if (count($_POST) > 0) {
             $Errors = File_validation::Validation($data); 
-            var_dump($Errors);// ETO TYT
             if (empty($Errors)) {
-                var_dump($Errors);
                 $obj = new File_Model();
                 $obj->Create($data);
                 header('Location: /files/');

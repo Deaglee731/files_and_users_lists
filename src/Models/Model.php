@@ -1,75 +1,78 @@
 <?php
 
 namespace Models;
+use Core\DBAdapter;
 
- class Model {
+
+class Model
+{
 
     protected $path_next;
     protected $path_file;
-    protected $path_index; 
+    protected $path_index;
+    protected $table;
+    protected $column;
 
-    function Decode()
+
+    function List()
     {
-        $directory = scandir($this->path_file);
-        $result_out = array_diff($directory, [".", "..", "numberic"]);
-        foreach ($result_out as $files) {
-            $decodestr = file_get_contents($this->path_file.$files);
-            $doc = json_decode($decodestr, TRUE);
-            $doc['id'] = $files;
-            $result_mass[] = $doc;
+        $query = "SELECT * FROM $this->table";
+        $db = DBAdapter::getInstance();
+        $result = $db->execSQL($query);
+        while ($row = mysqli_fetch_assoc($result)) {
+            $users[] = $row;
         }
 
-        return $result_mass;
+        return $users;
     }
-    
-    function View()
-    {
-        $this->Decode();
-    }
-
-
 
     function Create($data)
+
     {
-        $result = json_encode($data);
-        $current = file_get_contents($this->path_next);
-        $next = $current + 1;
-        file_put_contents($this->path_file . $next, $result);
-        file_put_contents("$this->path_next", $next);
+        $columns_part = '';
+        $values_part = '';
+
+        foreach ($data as $column => $value) {
+            if (!empty($columns_part)) {
+                $columns_part .= ", ";
+            }
+
+            $columns_part .= "`{$column}`";
+
+            if (!empty($values_part)) {
+                $values_part .= ", ";
+            }
+            $values_part .= "'{$value}'";
+        }
+
+        $columns_part = "(" . $columns_part  . ")";
+        $values_part = "(" . $values_part  . ")";
+
+        $query = "INSERT INTO $this->table $columns_part VALUES $values_part";
+        $db = DBAdapter::getInstance();
+        $result = $db->execSQL($query);
     }
 
-    function Update($data, $id)
+    function Update($id, $data)
     {
-
-
+        $query23 = "";
+        unset($data['file_id']);
+        foreach ($data as $key => $val) {
+            $query23 .= "`$key`='$val',";
+        }
+        $query23[strlen($query23) - 1] = ' ';
+        $query2 = "UPDATE $this->table SET {$query23} WHERE $this->theid={$id}";
+        $db = DBAdapter::getInstance();
+        $result = $db->execSQL($query2);
         header("Location: " . $this->path_index);
-        $data = json_encode($data);
-        file_put_contents($this->path_file.$id, $data);
     }
 
 
     function Delete($id)
     {
-
-        $current_file  = $id;
-        $current = file_get_contents($this->path_file.$current_file);
-
-        if (!isset($current)) {
-            echo "File deleted";
-        } else {
-            unlink("$this->path_file"."$current_file");
-            header("Location: ". $this->path_index);
-        }
+        $query = "DELETE FROM $this->table WHERE $this->theid = $id";
+        $db = DBAdapter::getInstance();
+        $result = $db->execSQL($query);
+        header("Location: " . $this->path_index);
     }
 }
-
-
-
-
-
-
-
-
-
-
-?>

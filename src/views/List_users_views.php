@@ -26,9 +26,8 @@
           <td><?php echo $users['lastname'] ?></td>
           <td><?php echo $users['birthday'] ?></td>
           <th scope="col">
-            <a href="/users/update?id=<?php echo $users['id'] ?>">EDIT</a>
-            <a href="/users/delete?id=<?php echo $users['id'] ?>">DELETE</a>
-          </th>
+            <a href="/users/update?id=<?php echo $users["user_id"]; ?>">EDIT</a>
+            <a href="/users/delete?id=<?php echo $users["user_id"] ?>">DELETE</a>          </th>
           <th scope="col">
             <div class="btn-group-toggle" data-toggle="buttons">
               <label class="btn btn-secondary active">
@@ -39,7 +38,8 @@
           </form>
           
       </tr>
-      <?php endforeach; ?>
+      <?php  endforeach;
+      ?>
   </table>
   </tbody>
 

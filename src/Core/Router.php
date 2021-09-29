@@ -16,13 +16,13 @@ class Router extends Singleton
 {
     function run()
     {
-
+        
         $address2 = $this->getPath();
         $address3 = $this->name123($address2);
         $route = array(
-            "/index"             => [
-                "className" => Controller::class,
-                "method" => ""
+            "/"             => [
+                "className" => "Controllers\Controller",
+                "method" => "admin"
             ],
             "/users/"           => [
                 "className" => "Controllers\User_Controller",
@@ -69,6 +69,7 @@ class Router extends Singleton
             } else {
             }
         }
+
     }
 
 

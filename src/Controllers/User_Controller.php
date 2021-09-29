@@ -4,7 +4,7 @@ namespace Controllers;
 use Core\View;
 use Models\User_Model;
 use Validators\User_validation;
-
+use Core\DBAdapter;
 
 class User_Controller extends Controller
 {
@@ -12,10 +12,11 @@ class User_Controller extends Controller
 
     public function View()
     {
+        
         $model = new User_Model();
-        $result_mass = $model->Decode();
+        $result_mass = $model->List();
         $template = "List_users_views";
-        View::render($template,$result_mass);
+        View::render($template,$result_mass,null);
         //require_once("views/List_users_views.php");
     }
     public function Create()
@@ -35,15 +36,19 @@ class User_Controller extends Controller
             }
         }
         $template = "Users_create_views";
-        View::render($template,$data);
+        View::render($template,$data,$Errors);
         //require("views/Users_create_views.php");
     }
     public function Update()
     {
-        $id = $_GET['id'];
-        
-        $data = file_get_contents("date_users/users/$id");
-        $data =  json_decode($data, TRUE);
+        $id = $_GET['id']; 
+        $query =  "SELECT * FROM Users WHERE user_id = $id";
+        $db = DBAdapter::getInstance();
+        $result = $db->execSQL($query);            
+        while ($row = mysqli_fetch_assoc($result)) {
+            $data = $row;
+        }
+
         if (count($_POST) > 0) {
             $data['login'] = $_POST['login'];
             $data['firstname'] = $_POST['firstname'];
@@ -52,14 +57,14 @@ class User_Controller extends Controller
             $Errors = User_validation::Validation2($data); 
             if (empty($Errors)) {
                 $obj = new User_Model();
-                $obj->Update($data,$id);
+                $obj->Update($id,$data);
                 header('Location: /users/');
                 return;
             }
+            
         }
-
         $template = "Views_users_update";
-        View::render($template,$data);
+        View::render($template,$data,$Errors);
         //require_once("views/Views_users_update.php");
     }
     public function Delete()

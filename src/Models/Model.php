@@ -1,6 +1,7 @@
 <?php
 
 namespace Models;
+
 use Core\DBAdapter;
 
 
@@ -53,18 +54,24 @@ class Model
         $result = $db->execSQL($query);
     }
 
+    public function getById($id) {
+        $query = "SELECT * FROM myapp.Users WHERE $this->theid={$id}";
+        $db = DBAdapter::getInstance();
+        $result = $db->execSQL($query);
+        return mysqli_fetch_assoc($result);
+    }
+
     function Update($id, $data)
     {
-        $query23 = "";
+        $querydata = "";
         unset($data['file_id']);
         foreach ($data as $key => $val) {
-            $query23 .= "`$key`='$val',";
+            $querydata .= "`$key`='$val',";
         }
-        $query23[strlen($query23) - 1] = ' ';
-        $query2 = "UPDATE $this->table SET {$query23} WHERE $this->theid={$id}";
+        $querydata = trim($querydata, ",");
+        $query2 = "UPDATE $this->table SET {$querydata} WHERE $this->theid={$id}";
         $db = DBAdapter::getInstance();
         $result = $db->execSQL($query2);
-        header("Location: " . $this->path_index);
     }
 
 
@@ -73,6 +80,5 @@ class Model
         $query = "DELETE FROM $this->table WHERE $this->theid = $id";
         $db = DBAdapter::getInstance();
         $result = $db->execSQL($query);
-        header("Location: " . $this->path_index);
     }
 }

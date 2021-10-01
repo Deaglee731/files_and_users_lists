@@ -10,7 +10,6 @@ class File_Controller extends Controller
     {
         $model = new File_Model();
         $result_mass = $model->List();
-        //require_once("views/List_Files_views.php");
         $template = "List_Files_views";
         View::render($template,$result_mass,null);
     }
@@ -36,7 +35,6 @@ class File_Controller extends Controller
         }
         $template = "Files_create_views";
         View::render($template,$data,$Errors);
-        //require("views/Files_create_views.php");
     }
     public function Update()
     {
@@ -67,13 +65,13 @@ class File_Controller extends Controller
         }
         $template = "Views_files_update";
         View::render($template,$data,$Errors);
-        //require_once("views/Views_files_update.php");
     }
     public function Delete()
     {
         $id = $_GET['id'];
         $obj = new File_Model();
         $obj->Delete($id);
+        header("Location: /files/");
     }
     
 }
